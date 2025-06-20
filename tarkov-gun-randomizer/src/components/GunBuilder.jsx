@@ -6,11 +6,14 @@ import { useAppContext } from "../AppContext";
 const GunBuilder = () => {
   const { selectedWeapon, filledSlots, getRandomWeapon } = useAppContext();
 
+  console.log(filledSlots);
+
   return (
     <div className='generator-container'>
       <div className='gun-container'>
         <div className='mobile-header'>
-          <h1>Tarkov Gun Builder</h1>
+          <div className='logo' />
+          <h1 className='glow'>Random Gun Builder</h1>
         </div>
         <div className='gun-image-wrapper'>
           <img className='image' src={selectedWeapon.image8xLink} />
@@ -23,9 +26,9 @@ const GunBuilder = () => {
             style={{
               width: "100%",
             }}
-            widkey={i}
+            key={i}
           >
-            <SlotTree key={i} slot={slot} />
+            <SlotTree key={i} slot={slot} index={i} />
             {i < filledSlots.slots.length - 1 && (
               <div className='seperator-container'>
                 <div className='main-seperator' />

@@ -1,12 +1,5 @@
 import { WEAPONS_QUERY, MODS_QUERY } from "./tarkovQueries";
-import {
-  WEAPONS_STORE_NAME,
-  MODS_STORE_NAME,
-  initDB,
-  setCache,
-  getCache,
-  clearCache,
-} from "./db";
+import { WEAPONS_STORE_NAME, MODS_STORE_NAME, setCache, getCache } from "./db";
 
 const TARKOV_API_URL = "https://api.tarkov.dev/graphql";
 
@@ -17,16 +10,12 @@ export const fetchFromTarkovDev = async ({ query, storeName, cacheKey }) => {
 
   const cached = await getCache(storeName, cacheKey);
   if (cached) {
-    console.log(`Returning cached data for ${cacheKey}`);
-
     return cached.data;
   }
 
   //
   // If not cached, fetch from API
   //
-
-  console.log(`Fetching data from API for ${cacheKey}`);
 
   const response = await fetch(TARKOV_API_URL, {
     method: "POST",

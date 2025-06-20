@@ -1,8 +1,13 @@
 import "./GunBuilder.css";
 import "../index.css";
 
-const SlotTree = ({ slot }) => {
+const SlotTree = ({ slot, index }) => {
   if (!slot || !slot.item) return null;
+
+  const isFirst = index < 1;
+
+  console.log(isFirst);
+  console.log(`${slot.item.name} index = ${index} depth=${slot.depth}`);
 
   if (slot.depth === 1) {
     return (
@@ -17,7 +22,7 @@ const SlotTree = ({ slot }) => {
           </div>
         </div>
         {slot.item.slots?.map((subSlot, i) => (
-          <SlotTree key={`${slot.name}-${i}`} slot={subSlot} />
+          <SlotTree key={`${slot.name}-${i}`} slot={subSlot} index={i} />
         ))}
       </div>
     );
@@ -25,9 +30,8 @@ const SlotTree = ({ slot }) => {
 
   if (slot.depth > 1) {
     return (
-      <div className='part-child-container'>
-        <div className='part-child-info'>
-          {/* <div className='connector' /> */}
+      <div className={`part-child-container`}>
+        <div className={`part-child-info ${isFirst ? "has-before" : ""}`}>
           <div className='mod-image-wrapper'>
             <div className='mod-short-name'>{slot.item.shortName}</div>
             <img className='image' src={slot.item.image} />
@@ -38,7 +42,7 @@ const SlotTree = ({ slot }) => {
         </div>
 
         {slot.item.slots?.map((subSlot, i) => (
-          <SlotTree key={`${slot.name}-${i}`} slot={subSlot} />
+          <SlotTree key={`${slot.name}-${i}`} slot={subSlot} index={i} />
         ))}
       </div>
     );

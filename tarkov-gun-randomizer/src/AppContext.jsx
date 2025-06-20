@@ -31,13 +31,11 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     clearIds();
     setFilledSlots(randomizeItemWithSlots(selectedWeapon, mods, 0));
-    console.log(filledSlots);
   }, [selectedWeapon]);
 
   const getRandomWeapon = () => {
     if (weapons.length === 0) return console.log(weapons.length);
     const index = Math.floor(Math.random() * weapons.length);
-    console.log(weapons);
 
     setSelectedWeapon(weapons[index]);
   };

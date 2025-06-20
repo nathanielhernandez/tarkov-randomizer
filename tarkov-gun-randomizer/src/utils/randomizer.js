@@ -30,12 +30,6 @@ const selectAllowedItem = (
     const index = Math.floor(Math.random() * validItems.length);
     const chosenItem = validItems[index];
 
-    // console.log("valid items: ", validItems);
-
-    // console.log("chosen item: ", chosenItem);
-    // console.log("conflictingItemIds: ", conflictingItemsIds);
-    // console.log("usedItemIds: ", usedItemIds);
-
     usedItemIds?.add(chosenItem.id);
     chosenItem.conflictingItems.forEach((item) =>
       conflictingItemsIds.add(item.id)
@@ -52,7 +46,6 @@ const selectAllowedItem = (
       depth
     );
 
-    // console.log(`${slot.name}: ${chosenItem.name} Required: ${status}`);
     return {
       name: slot.name,
       item: filledAttachment,
@@ -60,10 +53,6 @@ const selectAllowedItem = (
       depth: depth,
     };
   } else {
-    // console.log("allowedItems: ", allowedItems);
-    // console.log("filtered validItems: ", validItems);
-
-    // console.log("\n//\n//no valid items\n//");
     return;
   }
 };
@@ -102,7 +91,6 @@ export const randomizeItemWithSlots = (item, allMods, depth) => {
           );
         }
       } else {
-        // console.log(`${slot.name}: SKIPPED NOT REQUIRED`);
       }
     }
   }
