@@ -3,7 +3,6 @@ import Sidebar from "./components/Sidebar";
 import "./index.css";
 import ParallaxBackground from "./components/ParallaxBackground";
 import { AppProvider } from "./AppContext";
-import "";
 
 function App() {
   return (

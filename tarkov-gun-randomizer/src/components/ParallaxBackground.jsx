@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import DustParticles from "./DustParticles";
 import Parallax from "parallax-js";
 
 const ParallaxBackground = () => {
@@ -15,8 +16,11 @@ const ParallaxBackground = () => {
 
   return (
     <div ref={sceneRef} id='scene'>
-      <div data-depth='0.2'>
+      <div data-depth='0.4'>
         <div className='bg-img'></div>
+      </div>
+      <div data-depth='0.2'>
+        <DustParticles />
       </div>
     </div>
   );

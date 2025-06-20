@@ -11,7 +11,8 @@ const selectAllowedItem = (
   allMods,
   status,
   usedItemIds,
-  conflictingItemsIds
+  conflictingItemsIds,
+  depth
 ) => {
   const allowedItems = slot.filters.allowedItems || [];
 
@@ -43,14 +44,20 @@ const selectAllowedItem = (
     const fullAttachment = allMods.find((mod) => mod.id === chosenItem.id);
 
     if (!fullAttachment) return null;
+    depth++;
 
-    const filledAttachment = randomizeItemWithSlots(fullAttachment, allMods);
+    const filledAttachment = randomizeItemWithSlots(
+      fullAttachment,
+      allMods,
+      depth
+    );
 
     // console.log(`${slot.name}: ${chosenItem.name} Required: ${status}`);
     return {
       name: slot.name,
       item: filledAttachment,
       image: chosenItem.image,
+      depth: depth,
     };
   } else {
     // console.log("allowedItems: ", allowedItems);
@@ -61,7 +68,7 @@ const selectAllowedItem = (
   }
 };
 
-export const randomizeItemWithSlots = (item, allMods) => {
+export const randomizeItemWithSlots = (item, allMods, depth) => {
   const filledSlots = [];
   const slots = item?.properties?.slots || [];
 
@@ -74,7 +81,8 @@ export const randomizeItemWithSlots = (item, allMods) => {
             allMods,
             slot.required,
             usedItemIds,
-            conflictingItemsIds
+            conflictingItemsIds,
+            depth
           )
         );
       }
@@ -88,7 +96,8 @@ export const randomizeItemWithSlots = (item, allMods) => {
               allMods,
               slot.required,
               usedItemIds,
-              conflictingItemsIds
+              conflictingItemsIds,
+              depth
             )
           );
         }

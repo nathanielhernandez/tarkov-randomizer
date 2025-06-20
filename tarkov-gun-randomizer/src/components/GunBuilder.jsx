@@ -1,26 +1,42 @@
-import { useState, useEffect } from "react";
-import { fetchWeapons, fetchMods } from "../utils/tarkovApi";
-import { clearCache } from "../utils/cachedFetch";
-import { clearIds, randomizeItemWithSlots } from "../utils/randomizer";
 import SlotTree from "./SlotTree";
 import "./GunBuilder.css";
 import "../index.css";
 import { useAppContext } from "../AppContext";
 
 const GunBuilder = () => {
-  const { selectedWeapon, filledSlots } = useAppContext();
+  const { selectedWeapon, filledSlots, getRandomWeapon } = useAppContext();
 
   return (
-    <div>
-      <div className='gun-image-wrapper'>
-        <img className='image' src={selectedWeapon.image8xLink} />
+    <div className='generator-container'>
+      <div className='gun-container'>
+        <div className='mobile-header'>
+          <h1>Tarkov Gun Builder</h1>
+        </div>
+        <div className='gun-image-wrapper'>
+          <img className='image' src={selectedWeapon.image8xLink} />
+        </div>
+        {selectedWeapon ? selectedWeapon.name : "Loading weapon..."}
+        <div className='main-seperator' />
+
+        {filledSlots?.slots?.map((slot, i) => (
+          <div
+            style={{
+              width: "100%",
+            }}
+            widkey={i}
+          >
+            <SlotTree key={i} slot={slot} />
+            {i < filledSlots.slots.length - 1 && (
+              <div className='seperator-container'>
+                <div className='main-seperator' />
+              </div>
+            )}
+          </div>
+        ))}
+        <div className='mobile-button'>
+          <button onClick={getRandomWeapon}>generate</button>
+        </div>
       </div>
-
-      {selectedWeapon ? selectedWeapon.name : "Loading weapon..."}
-
-      {filledSlots?.slots?.map((slot, i) => (
-        <SlotTree key={i} slot={slot} />
-      ))}
     </div>
   );
 };

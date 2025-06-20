@@ -30,7 +30,8 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     clearIds();
-    setFilledSlots(randomizeItemWithSlots(selectedWeapon, mods));
+    setFilledSlots(randomizeItemWithSlots(selectedWeapon, mods, 0));
+    console.log(filledSlots);
   }, [selectedWeapon]);
 
   const getRandomWeapon = () => {
