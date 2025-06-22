@@ -22,11 +22,11 @@ export const AppProvider = ({ children }) => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    if (weapons.length > 0) {
-      getRandomWeapon();
-    }
-  }, [weapons]);
+  // useEffect(() => {
+  //   if (weapons.length > 0) {
+  //     getRandomWeapon();
+  //   }
+  // }, [weapons]);
 
   useEffect(() => {
     clearIds();

@@ -18,7 +18,10 @@ const GunBuilder = () => {
         <div className='gun-image-wrapper'>
           <img className='image' src={selectedWeapon.image8xLink} />
         </div>
-        {selectedWeapon ? selectedWeapon.name : "Loading weapon..."}
+        <div className='gun-name'>
+          {selectedWeapon ? selectedWeapon.name : "Loading weapon..."}
+        </div>
+
         <div className='main-seperator' />
 
         {filledSlots?.slots?.map((slot, i) => (

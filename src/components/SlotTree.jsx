@@ -17,6 +17,7 @@ const SlotTree = ({ slot, index }) => {
             <div className='mod-short-name'>{slot.item.shortName}</div>
             <img className='image' src={slot.item.image} />
           </div>
+
           <div className='part-info'>
             <h2 className='glow'>{slot.name}:</h2> {slot.item.name}
           </div>

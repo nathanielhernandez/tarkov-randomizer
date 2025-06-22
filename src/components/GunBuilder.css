@@ -10,6 +10,7 @@
   display: grid;
   justify-items: center;
   gap: 0;
+  box-sizing: border-box;
 }
 
 .mod-image-wrapper {
@@ -43,15 +44,31 @@
   object-fit: contain;
   position: relative;
   display: flex;
+  z-index: 0;
   align-items: center;
   justify-content: center;
 }
 
 .gun-image-wrapper {
   min-width: 400px;
+  max-width: 400px;
   height: 140px;
   background-color: #111;
-  border: 1px solid #222;
+  border-top: 1px solid #222;
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+}
+
+.gun-name {
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+  min-width: 400px;
+  max-width: 400px;
+  border-bottom: 1px solid #222;
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
 }
 
 .mod-short-name {
@@ -62,11 +79,11 @@
   top: 0px;
   right: 2px;
   font-size: 12px !important;
-  z-index: 1;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
   text-transform: capitalize;
   line-height: 1.2;
+  z-index: 1;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -81,5 +98,10 @@
     box-sizing: border-box;
     padding: 16px;
     margin-bottom: 132px;
+  }
+
+  .gun-name {
+    min-width: 100%;
+    text-align: center;
   }
 }
