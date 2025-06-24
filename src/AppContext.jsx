@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { fetchWeapons, fetchMods } from "./utils/tarkovApi";
 import { clearIds, randomizeItemWithSlots } from "./utils/randomizer";
 
@@ -37,7 +31,6 @@ export const AppProvider = ({ children }) => {
   }, [weaponsList, modsList]);
 
   const getRandomWeapon = (list) => {
-    console.log(list);
     if (!list || list.length === 0) return null;
     return list[Math.floor(Math.random() * list.length)];
   };
