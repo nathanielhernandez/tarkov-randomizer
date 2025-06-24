@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import "./index.css";
 import ParallaxBackground from "./components/ParallaxBackground";
 import { AppProvider } from "./AppContext";
+import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <ParallaxBackground />
         <Sidebar />
         <GunBuilder />
+        <Analytics />
       </div>
     </AppProvider>
   );
