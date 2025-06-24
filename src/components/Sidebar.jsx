@@ -2,13 +2,13 @@ import { useAppContext } from "../AppContext";
 import "../index.css";
 
 const Sidebar = () => {
-  const { getRandomWeapon } = useAppContext();
+  const { reselectWeapon } = useAppContext();
   return (
     <div className='sidebar-container'>
       <div className='sidebar'>
         <div className='logo-container'>
           <div className='logo' />
-          <h1 className='logo-text'>Random Weapon Builder</h1>
+          <h1 className='logo-text glow'>Random Weapon Builder</h1>
         </div>
         <p>
           Welcome to the Escape from Tarkov random weapon builder! Click
@@ -36,7 +36,7 @@ const Sidebar = () => {
         <p>
           If you have further ideas or feature request, you can reach me here.
         </p>
-        <button onClick={getRandomWeapon}>generate</button>
+        <button onClick={reselectWeapon}>generate</button>
       </div>
     </div>
   );

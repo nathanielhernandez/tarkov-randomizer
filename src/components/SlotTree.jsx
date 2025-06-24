@@ -6,8 +6,8 @@ const SlotTree = ({ slot, index }) => {
 
   const isFirst = index < 1;
 
-  console.log(isFirst);
-  console.log(`${slot.item.name} index = ${index} depth=${slot.depth}`);
+  // console.log(isFirst);
+  // console.log(`${slot.item.name} index = ${index} depth=${slot.depth}`);
 
   if (slot.depth === 1) {
     return (
