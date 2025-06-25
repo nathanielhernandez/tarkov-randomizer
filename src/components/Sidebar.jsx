@@ -1,6 +1,6 @@
 import "../index.css";
 
-const Sidebar = ({ onReroll }) => {
+const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
   return (
     <div className='sidebar-container'>
       <div className='sidebar'>
@@ -18,10 +18,6 @@ const Sidebar = ({ onReroll }) => {
           <li>
             There is a known issue where attachments to barrels are not
             considered, this will be fixed in the next update
-          </li>
-          <li>
-            Flares are considered a weapon right now and will be removed in the
-            next update
           </li>
         </ul>
         There will be more features added to future updates:

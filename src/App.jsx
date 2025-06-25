@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchWeapons, fetchMods } from "./utils/tarkovApi";
 import { randomizeItemWithSlots } from "./utils/randomizer";
 import GunBuilder from "./components/GunBuilder";
 import Sidebar from "./components/Sidebar";
 import ParallaxBackground from "./components/ParallaxBackground";
 import { initGA } from "./utils/initGA";
+import { sanitizeWeapon } from "./utils/weaponSanitation";
 import "./index.css";
 
 function App() {
@@ -42,22 +43,23 @@ function App() {
       return;
     }
 
-    const index = Math.floor(Math.random() * weapons.length);
-    const weapon = weapons[index];
+    var weapon = weapons[Math.floor(Math.random() * weapons.length)];
+    weapon = sanitizeWeapon(weapon, weapons);
+
     const filled = randomizeItemWithSlots(weapon, mods, 0);
 
     setSelectedWeapon(weapon);
     setFilledSlots(filled);
   };
 
-  if (weaponsLoading || modsLoading) {
-    return <p>Loading assets...</p>;
-  }
-
   return (
     <div className='main-container'>
       <ParallaxBackground />
-      <Sidebar onReroll={handleGenerate} />
+      <Sidebar
+        onReroll={handleGenerate}
+        weaponsLoading={weaponsLoading}
+        modsLoading={modsLoading}
+      />
       <GunBuilder
         selectedWeapon={selectedWeapon}
         filledSlots={filledSlots}
