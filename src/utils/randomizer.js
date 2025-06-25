@@ -61,6 +61,8 @@ export const randomizeItemWithSlots = (item, allMods, depth) => {
   const filledSlots = [];
   const slots = item?.properties?.slots || [];
 
+  console.log(slots);
+
   for (var slot of slots) {
     if (slot.required) {
       if (slot.filters.allowedItems.length > 0) {
@@ -76,21 +78,34 @@ export const randomizeItemWithSlots = (item, allMods, depth) => {
         );
       }
     } else {
-      const choice = Math.floor(Math.random() * 2);
-      if (choice == 1) {
-        if (slot.filters.allowedItems.length > 0) {
-          filledSlots.push(
-            selectAllowedItem(
-              slot,
-              allMods,
-              slot.required,
-              usedItemIds,
-              conflictingItemsIds,
-              depth
-            )
-          );
-        }
+      if (slot.name == "Stock" || slot.name == "Scope") {
+        filledSlots.push(
+          selectAllowedItem(
+            slot,
+            allMods,
+            slot.required,
+            usedItemIds,
+            conflictingItemsIds,
+            depth
+          )
+        );
       } else {
+        const choice = Math.floor(Math.random() * 2);
+        if (choice == 1) {
+          if (slot.filters.allowedItems.length > 0) {
+            filledSlots.push(
+              selectAllowedItem(
+                slot,
+                allMods,
+                slot.required,
+                usedItemIds,
+                conflictingItemsIds,
+                depth
+              )
+            );
+          }
+        } else {
+        }
       }
     }
   }
@@ -102,5 +117,6 @@ export const randomizeItemWithSlots = (item, allMods, depth) => {
     image: item.image8xLink,
     conflictingItems: item.conflictingItems,
     slots: filledSlots,
+    category: item.category.name,
   };
 };

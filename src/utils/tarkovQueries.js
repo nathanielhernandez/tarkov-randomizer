@@ -3,6 +3,10 @@ export const WEAPONS_QUERY = `query Weapons {
     id
     name
     image8xLink
+    category {
+      id
+      name
+    }
     properties {
       ... on ItemPropertiesWeapon {
         slots {
@@ -31,6 +35,10 @@ export const MODS_QUERY = `query Mods {
     name
     shortName
     image8xLink
+    category {
+      id
+      name
+    }
     conflictingItems {
       name
       id
