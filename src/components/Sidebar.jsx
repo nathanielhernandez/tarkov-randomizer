@@ -1,8 +1,6 @@
-import { useAppContext } from "../AppContext";
 import "../index.css";
 
-const Sidebar = () => {
-  const { reselectWeapon } = useAppContext();
+const Sidebar = ({ onReroll }) => {
   return (
     <div className='sidebar-container'>
       <div className='sidebar'>
@@ -36,7 +34,7 @@ const Sidebar = () => {
         <p>
           If you have further ideas or feature request, you can reach me here.
         </p>
-        <button onClick={reselectWeapon}>generate</button>
+        <button onClick={onReroll}>generate</button>
       </div>
     </div>
   );

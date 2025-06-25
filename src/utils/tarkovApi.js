@@ -9,13 +9,10 @@ export const fetchFromTarkovDev = async ({ query, storeName, cacheKey }) => {
   //
 
   const cached = await getCache(storeName, cacheKey);
-  if (cached) {
-    return cached.data;
-  }
 
-  //
-  // If not cached, fetch from API
-  //
+  if (cached) {
+    return cached.data.items;
+  }
 
   const response = await fetch(TARKOV_API_URL, {
     method: "POST",
@@ -42,7 +39,7 @@ export async function fetchWeapons() {
     cacheKey: "all-weapons",
   });
 
-  return data.items;
+  return data;
 }
 
 export async function fetchMods() {
@@ -51,5 +48,6 @@ export async function fetchMods() {
     storeName: MODS_STORE_NAME,
     cacheKey: "all-mods",
   });
-  return data.items;
+
+  return data;
 }

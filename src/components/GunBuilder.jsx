@@ -1,11 +1,8 @@
 import SlotTree from "./SlotTree";
 import "./GunBuilder.css";
 import "../index.css";
-import { useAppContext } from "../AppContext";
 
-const GunBuilder = () => {
-  const { selectedWeapon, filledSlots, reselectWeapon } = useAppContext();
-
+const GunBuilder = ({ selectedWeapon, filledSlots, onReroll }) => {
   if (filledSlots.length === 0) {
     return (
       <div className='generator-container'>
@@ -19,7 +16,7 @@ const GunBuilder = () => {
           <h1 className='glow'>Click generate</h1>
         </div>
         <div className='mobile-button'>
-          <button onClick={reselectWeapon}>generate</button>
+          <button onClick={onReroll}>generate</button>
         </div>
       </div>
     );
@@ -60,7 +57,7 @@ const GunBuilder = () => {
             </div>
           ))}
           <div className='mobile-button'>
-            <button onClick={reselectWeapon}>generate</button>
+            <button onClick={onReroll}>generate</button>
           </div>
         </div>
       </div>

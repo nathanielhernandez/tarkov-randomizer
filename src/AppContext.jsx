@@ -1,69 +1,81 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { fetchWeapons, fetchMods } from "./utils/tarkovApi";
-import { clearIds, randomizeItemWithSlots } from "./utils/randomizer";
+// import { createContext, useContext, useState, useEffect } from "react";
+// import { fetchWeapons, fetchMods } from "./utils/tarkovApi";
+// import { clearIds, randomizeItemWithSlots } from "./utils/randomizer";
 
-const AppContext = createContext();
+// const AppContext = createContext();
 
-export const AppProvider = ({ children }) => {
-  const [weaponsList, setWeaponsList] = useState([]);
-  const [selectedWeapon, setSelectedWeapon] = useState(null);
-  const [modsList, setModsList] = useState([]);
-  const [filledSlots, setFilledSlots] = useState([]);
+// export const AppProvider = ({ children }) => {
+//   const [weaponsList, setWeaponsList] = useState([]);
+//   const [selectedWeapon, setSelectedWeapon] = useState(null);
+//   const [modsList, setModsList] = useState([]);
+//   const [filledSlots, setFilledSlots] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const tempWeaponsList = await fetchWeapons();
-        const tempModsList = await fetchMods();
-        setWeaponsList(tempWeaponsList);
-        setModsList(tempModsList);
-      } catch (err) {
-        console.error("Failed to fetch: ", err);
-      }
-    };
-    fetchData();
-  }, []);
+//   useEffect(() => {
+//     const init = async () => {
+//       try {
+//         const tempWeaponsList = await fetchWeapons();
+//         const tempModsList = await fetchMods();
 
-  useEffect(() => {
-    if (weaponsList.length > 0 && modsList.length > 0 && !selectedWeapon) {
-      reselectWeapon();
-    }
-  }, [weaponsList, modsList]);
+//         console.log(tempWeaponsList);
 
-  const getRandomWeapon = (list) => {
-    if (!list || list.length === 0) return null;
-    return list[Math.floor(Math.random() * list.length)];
-  };
+//         setWeaponsList(tempWeaponsList || []);
+//         setModsList(tempModsList || []);
 
-  const reselectWeapon = () => {
-    if (filledSlots.length > 0) clearIds();
-    if (!weaponsList || weaponsList.length === 0) {
-      console.warn("No items available to select from yet.");
-      return;
-    }
+//         const tempWeapon = getRandomWeapon(tempWeaponsList);
+//         const tempFilled = randomizeItemWithSlots(tempWeapon, tempModsList, 0);
 
-    const newWeapon = getRandomWeapon(weaponsList);
+//         setFilledSlots(tempFilled);
+//         setSelectedWeapon(tempWeapon);
+//       } catch (err) {
+//         console.error("Failed to fetch: ", err);
+//       }
+//     };
 
-    setSelectedWeapon(newWeapon);
-    setFilledSlots(randomizeItemWithSlots(newWeapon, modsList, 0));
-  };
+//     init();
+//   }, []);
 
-  return (
-    <AppContext.Provider
-      value={{
-        weaponsList,
-        setWeaponsList,
-        selectedWeapon,
-        modsList,
-        setModsList,
-        filledSlots,
-        setFilledSlots,
-        reselectWeapon,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
-};
+//   // useEffect(() => {
+//   //   if (weaponsList.length && modsList.length && !selectedWeapon) {
+//   //     generateAndSetWeapon();
+//   //   }
+//   // }, [weaponsList.length, modsList.length, selectedWeapon]);
 
-export const useAppContext = () => useContext(AppContext);
+//   const getRandomWeapon = (list) => {
+//     if (!Array.isArray(list) || list.length === 0) return null;
+//     return list[Math.floor(Math.random() * list.length)];
+//   };
+
+//   const generateAndSetWeapon = () => {
+//     if (!weaponsList.length || !modsList.length) {
+//       console.warn("Weapon or mod list not ready");
+//       return;
+//     }
+
+//     clearIds();
+
+//     const tempWeapon = getRandomWeapon(weaponsList);
+//     const tempFilled = randomizeItemWithSlots(tempWeapon, modsList, 0);
+
+//     setSelectedWeapon(tempWeapon);
+//     setFilledSlots(tempFilled);
+//   };
+
+//   return (
+//     <AppContext.Provider
+//       value={{
+//         weaponsList,
+//         setWeaponsList,
+//         selectedWeapon,
+//         modsList,
+//         setModsList,
+//         filledSlots,
+//         setFilledSlots,
+//         generateAndSetWeapon,
+//       }}
+//     >
+//       {children}
+//     </AppContext.Provider>
+//   );
+// };
+
+// export const useAppContext = () => useContext(AppContext);
