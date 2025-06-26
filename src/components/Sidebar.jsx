@@ -17,22 +17,17 @@ const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
         </p>
         <ul>
           <li>This is a beta version, there may be bugs </li>
-          <li>
-            There is a known issue where attachments to barrels are not
-            considered, this will be fixed in the next update
-          </li>
         </ul>
         There will be more features added to future updates:
         <ul>
           <li>Locking specific components or weapons</li>
-          <li>Ensuring an optic is generated within the build</li>
           <li>Estimated costs of each build</li>
           <li>Minor bug fixes and UI tweaks</li> <li>...and more!</li>
         </ul>
         <p>
           If you have further ideas or feature request, you can reach me here.
         </p>
-        <ul>
+        <ul className='options'>
           <li>
             <input
               type='checkbox'
@@ -40,7 +35,7 @@ const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
               checked={settings.enforceStock}
               onChange={() => toggleSetting("enforceStock")}
             />
-            <label htmlFor='require-stock'> Require Stock</label>
+            <label htmlFor='require-stock'> Enforce Stock</label>
           </li>
           <li>
             <input
@@ -58,7 +53,7 @@ const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
               checked={settings.enforceMuzzle}
               onChange={() => toggleSetting("enforceMuzzle")}
             />
-            <label htmlFor='require-scope'> Muzzle Scope</label>
+            <label htmlFor='require-scope'> Enforce Scope</label>
           </li>
         </ul>
         <button onClick={onReroll}>generate</button>

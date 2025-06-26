@@ -17,7 +17,6 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
 }
 
 h1 {
@@ -77,16 +76,17 @@ button:hover {
 }
 
 .sidebar-container {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
   height: 100vh;
   width: 432px;
 }
 
 .sidebar {
-  position: fixed;
-  top: 42px;
-  width: 500px;
-  background-color: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  background-color: #111;
+  border: 1px solid #222;
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
@@ -220,6 +220,46 @@ button:hover {
   width: 64px;
   height: 64px;
   background: url("./assets/elbow.svg");
+}
+
+ul.options {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+ul.options > li {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  color: #b2a789;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #b2a789;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 
 @media only screen and (max-width: 1081px) {
