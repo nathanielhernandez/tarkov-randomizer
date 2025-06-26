@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchWeapons, fetchMods } from "./utils/tarkovApi";
 import { randomizeItemWithSlots } from "./utils/randomizer";
 import GunBuilder from "./components/GunBuilder";
@@ -7,12 +7,15 @@ import Sidebar from "./components/Sidebar";
 import ParallaxBackground from "./components/ParallaxBackground";
 import { initGA } from "./utils/initGA";
 import { sanitizeWeapon } from "./utils/weaponSanitation";
+import { useSettings } from "./context/SettingsContext";
 import "./index.css";
 
 function App() {
   if (import.meta.env.VITE_IS_PROD_ANALYTICS === "true") {
     initGA();
   }
+
+  const { settings } = useSettings();
 
   const [selectedWeapon, setSelectedWeapon] = useState(null);
   const [filledSlots, setFilledSlots] = useState([]);
@@ -46,7 +49,7 @@ function App() {
     var weapon = weapons[Math.floor(Math.random() * weapons.length)];
     weapon = sanitizeWeapon(weapon, weapons);
 
-    const filled = randomizeItemWithSlots(weapon, mods, 0);
+    const filled = randomizeItemWithSlots(weapon, mods, 0, settings);
 
     setSelectedWeapon(weapon);
     setFilledSlots(filled);

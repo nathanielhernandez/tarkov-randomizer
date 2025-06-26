@@ -62,6 +62,24 @@ export const MODS_QUERY = `query Mods {
           }
         }
       }
+      ... on ItemPropertiesBarrel {
+        slots {
+          required
+          name
+          filters {
+            allowedItems {
+              name
+              shortName
+              id
+              image8xLink
+              conflictingItems {
+                name
+                id
+              }
+            }
+          }
+        }
+      }
     }
   }
 }`;

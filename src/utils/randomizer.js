@@ -12,7 +12,8 @@ const selectAllowedItem = (
   status,
   usedItemIds,
   conflictingItemsIds,
-  depth
+  depth,
+  settings
 ) => {
   const allowedItems = slot.filters.allowedItems || [];
 
@@ -43,7 +44,8 @@ const selectAllowedItem = (
     const filledAttachment = randomizeItemWithSlots(
       fullAttachment,
       allMods,
-      depth
+      depth,
+      settings
     );
 
     return {
@@ -57,13 +59,26 @@ const selectAllowedItem = (
   }
 };
 
-export const randomizeItemWithSlots = (item, allMods, depth) => {
+export const randomizeItemWithSlots = (item, allMods, depth, settings) => {
   const filledSlots = [];
   const slots = item?.properties?.slots || [];
+  console.log(settings);
 
-  console.log(slots);
+  const enforceScope = settings.enforceScope ?? false;
+  const enforceStock = settings.enforceStock ?? false;
+  const enforceMuzzle = settings.enforceMuzzle ?? false;
 
   for (var slot of slots) {
+    if (
+      (enforceScope && slot.name == "Scope") ||
+      (enforceMuzzle && slot.name == "Muzzle") ||
+      (enforceStock && slot.name == "Stock")
+    ) {
+      console.log("setSlot required due to checkbox: ", slot.name);
+
+      slot.required = true;
+    }
+
     if (slot.required) {
       if (slot.filters.allowedItems.length > 0) {
         filledSlots.push(
@@ -73,39 +88,29 @@ export const randomizeItemWithSlots = (item, allMods, depth) => {
             slot.required,
             usedItemIds,
             conflictingItemsIds,
-            depth
+            depth,
+            settings
           )
         );
       }
     } else {
-      if (slot.name == "Stock" || slot.name == "Scope") {
-        filledSlots.push(
-          selectAllowedItem(
-            slot,
-            allMods,
-            slot.required,
-            usedItemIds,
-            conflictingItemsIds,
-            depth
-          )
-        );
-      } else {
-        const choice = Math.floor(Math.random() * 2);
-        if (choice == 1) {
-          if (slot.filters.allowedItems.length > 0) {
-            filledSlots.push(
-              selectAllowedItem(
-                slot,
-                allMods,
-                slot.required,
-                usedItemIds,
-                conflictingItemsIds,
-                depth
-              )
-            );
-          }
-        } else {
+      const choice = Math.floor(Math.random() * 2);
+      if (choice == 1) {
+        if (slot.filters.allowedItems.length > 0) {
+          filledSlots.push(
+            selectAllowedItem(
+              slot,
+              allMods,
+              slot.required,
+              usedItemIds,
+              conflictingItemsIds,
+              depth,
+              settings
+            )
+          );
         }
+      } else {
+        // }
       }
     }
   }

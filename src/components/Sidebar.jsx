@@ -1,6 +1,8 @@
 import "../index.css";
+import { useSettings } from "../context/SettingsContext";
 
 const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
+  const { settings, toggleSetting } = useSettings();
   return (
     <div className='sidebar-container'>
       <div className='sidebar'>
@@ -30,6 +32,35 @@ const Sidebar = ({ onReroll, weaponsLoading, modsLoading }) => {
         <p>
           If you have further ideas or feature request, you can reach me here.
         </p>
+        <ul>
+          <li>
+            <input
+              type='checkbox'
+              id='require-stock'
+              checked={settings.enforceStock}
+              onChange={() => toggleSetting("enforceStock")}
+            />
+            <label htmlFor='require-stock'> Require Stock</label>
+          </li>
+          <li>
+            <input
+              type='checkbox'
+              id='require-scope'
+              checked={settings.enforceScope}
+              onChange={() => toggleSetting("enforceScope")}
+            />
+            <label htmlFor='require-scope'> Enforce Scope</label>
+          </li>
+          <li>
+            <input
+              type='checkbox'
+              id='require-muzzle'
+              checked={settings.enforceMuzzle}
+              onChange={() => toggleSetting("enforceMuzzle")}
+            />
+            <label htmlFor='require-scope'> Muzzle Scope</label>
+          </li>
+        </ul>
         <button onClick={onReroll}>generate</button>
       </div>
     </div>
