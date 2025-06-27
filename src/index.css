@@ -34,6 +34,12 @@ h3 {
   font-family: Bender Bold;
 }
 
+h4 {
+  color: #444;
+  text-align: center;
+  margin: 0;
+}
+
 .glow {
   text-shadow: #9a8866 0 0 6px;
 }
@@ -77,8 +83,8 @@ button.main:hover {
 button.hamburger {
   position: fixed;
   display: none;
-  top: 1em;
-  left: 1em;
+  top: 0.75em;
+  left: 0.75em;
   z-index: 150;
   background: none;
   color: #9a8866;
@@ -121,6 +127,14 @@ button.hamburger {
   padding: 2rem 1rem;
   max-width: 400px;
   gap: 1em;
+}
+
+.generate-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0;
+  box-sizing: border-box;
 }
 
 .backdrop {
@@ -315,7 +329,7 @@ input[type="checkbox"]:checked::before {
   h1 {
     margin: 0;
   }
-  button {
+  button.main {
     opacity: 100%;
     font-size: 2.5rem;
     padding: 20px 30px;

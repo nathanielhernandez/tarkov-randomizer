@@ -25,10 +25,14 @@ const Sidebar = ({ onReroll }) => {
       </button>
       <aside className={`sidebar-container ${isMobileMenuOpen ? "open" : ""}`}>
         <div className='sidebar'>
-          <div className='logo-container'>
-            <div className='logo' />
-            <h1 className='logo-text glow'>Random Weapon Builder</h1>
-          </div>
+          {!isMobileMenuOpen ? (
+            <div className='logo-container'>
+              <div className='logo' />
+              <h1 className='logo-text glow'>Random Weapon Builder</h1>
+            </div>
+          ) : (
+            ""
+          )}
           <div className='attention-notification-container'>
             <div className='warning-icon' />
             <div>
@@ -69,13 +73,16 @@ const Sidebar = ({ onReroll }) => {
               <label htmlFor='require-muzzle'> Enforce Muzzle</label>
             </li>
           </ul>
-          {!isMobileMenuOpen ? (
-            <button className='main' onClick={onReroll}>
-              generate
-            </button>
-          ) : (
-            ""
-          )}
+          <div className='generate-button'>
+            {!isMobileMenuOpen ? (
+              <button className='main' onClick={onReroll}>
+                generate
+              </button>
+            ) : (
+              ""
+            )}
+            <h4>version 1.0 beta</h4>
+          </div>
         </div>
       </aside>
       {isMobileMenuOpen && (

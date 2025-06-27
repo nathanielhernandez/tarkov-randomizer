@@ -9,7 +9,7 @@ const GunBuilder = ({ selectedWeapon, filledSlots, onReroll }) => {
         <div className='gun-container'>
           <div className='mobile-header'>
             <div className='logo' />
-            <h1 className='glow'>Random Gun Builder</h1>
+            <h1 className='glow'>Random Weapon Builder</h1>
           </div>
         </div>
         <div className='no-gun-generated'>
@@ -58,8 +58,10 @@ const GunBuilder = ({ selectedWeapon, filledSlots, onReroll }) => {
               )}
             </div>
           ))}
-          <div className='mobile-button main'>
-            <button onClick={onReroll}>generate</button>
+          <div className='mobile-button'>
+            <button className='main' onClick={onReroll}>
+              generate
+            </button>
           </div>
         </div>
       </div>
