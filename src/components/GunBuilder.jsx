@@ -16,7 +16,9 @@ const GunBuilder = ({ selectedWeapon, filledSlots, onReroll }) => {
           <h1 className='glow'>Click generate</h1>
         </div>
         <div className='mobile-button'>
-          <button onClick={onReroll}>generate</button>
+          <button className='main' onClick={onReroll}>
+            generate
+          </button>
         </div>
       </div>
     );
@@ -56,7 +58,7 @@ const GunBuilder = ({ selectedWeapon, filledSlots, onReroll }) => {
               )}
             </div>
           ))}
-          <div className='mobile-button'>
+          <div className='mobile-button main'>
             <button onClick={onReroll}>generate</button>
           </div>
         </div>
