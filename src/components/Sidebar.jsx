@@ -1,11 +1,10 @@
 import "../index.css";
 import { useEffect, useState } from "react";
-import { useSettings } from "../context/SettingsContext";
+import { CURRENT_VERSION } from "../utils/version";
 
 import SidebarText from "./SidebarText";
 
 const Sidebar = ({ onReroll }) => {
-  const { settings, toggleSetting } = useSettings();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -44,35 +43,7 @@ const Sidebar = ({ onReroll }) => {
             </div>
           </div>
           <SidebarText />
-          <ul className='options'>
-            <li>
-              <input
-                type='checkbox'
-                id='require-stock'
-                checked={settings.enforceStock}
-                onChange={() => toggleSetting("enforceStock")}
-              />
-              <label htmlFor='require-stock'> Enforce Stock</label>
-            </li>
-            <li>
-              <input
-                type='checkbox'
-                id='require-scope'
-                checked={settings.enforceScope}
-                onChange={() => toggleSetting("enforceScope")}
-              />
-              <label htmlFor='require-scope'> Enforce Scope</label>
-            </li>
-            <li>
-              <input
-                type='checkbox'
-                id='require-muzzle'
-                checked={settings.enforceMuzzle}
-                onChange={() => toggleSetting("enforceMuzzle")}
-              />
-              <label htmlFor='require-muzzle'> Enforce Muzzle</label>
-            </li>
-          </ul>
+
           <div className='generate-button'>
             {!isMobileMenuOpen ? (
               <button className='main' onClick={onReroll}>
@@ -81,7 +52,7 @@ const Sidebar = ({ onReroll }) => {
             ) : (
               ""
             )}
-            <h4>version 1.0 beta</h4>
+            <h4>{CURRENT_VERSION}</h4>
           </div>
         </div>
       </aside>

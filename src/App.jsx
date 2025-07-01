@@ -8,6 +8,7 @@ import ParallaxBackground from "./components/ParallaxBackground";
 import { initGA } from "./utils/initGA";
 import { sanitizeWeapon } from "./utils/weaponSanitation";
 import { useSettings } from "./context/SettingsContext";
+import ChangelogModal from "./components/ChangelogModal";
 import "./index.css";
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
 
   return (
     <div className='main-container'>
+      <ChangelogModal />
       <ParallaxBackground />
       <Sidebar
         onReroll={handleGenerate}

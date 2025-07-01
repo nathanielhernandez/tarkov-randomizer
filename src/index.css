@@ -76,6 +76,21 @@ button.main {
   transition: opacity 0.5s ease;
 }
 
+button.small {
+  font-family: Bender Regular;
+  font-size: 1.2rem;
+  border-radius: 3px;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+  color: #000;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #9a8866;
+  padding: 0.75rem;
+}
+
 button.main:hover {
   opacity: 1;
 }
@@ -105,6 +120,7 @@ button.hamburger {
 
 .main-container {
   display: flex;
+  height: 100vh;
 }
 
 .sidebar-container {
@@ -146,9 +162,33 @@ button.hamburger {
   background: rgba(0, 0, 0, 0.5);
   z-index: 90;
 }
+
+.modal-container {
+  background: #222;
+  padding: 24px;
+  border: 1px solid #333;
+  margin: 1rem;
+}
+
+.backdrop.modal {
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .logo-container {
   display: flex;
   flex-direction: column;
+}
+
+.right-align {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+}
+
+.mt_1 {
+  margin-top: 1rem;
 }
 
 .bg-img {
