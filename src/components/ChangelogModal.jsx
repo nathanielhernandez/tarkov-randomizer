@@ -7,11 +7,9 @@ const ChangelogModal = () => {
 
   useEffect(() => {
     const seenVersion = localStorage.getItem("changelog_seen");
-    console.log("in useeffect");
 
     if (seenVersion !== CURRENT_VERSION) {
       setShowModal(true);
-      console.log(seenVersion);
     }
   }, []);
 
@@ -21,7 +19,6 @@ const ChangelogModal = () => {
   };
 
   if (!showModal) {
-    console.log("in return");
     return null;
   }
 

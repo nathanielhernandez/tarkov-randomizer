@@ -62,7 +62,6 @@ const selectAllowedItem = (
 export const randomizeItemWithSlots = (item, allMods, depth, settings) => {
   const filledSlots = [];
   const slots = item?.properties?.slots || [];
-  console.log(settings);
 
   const enforceScope = settings.enforceScope ?? false;
   const enforceStock = settings.enforceStock ?? false;
